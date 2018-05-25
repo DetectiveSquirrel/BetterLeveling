@@ -1,6 +1,6 @@
 ﻿using System.Runtime.InteropServices;
 
-namespace Utilities
+namespace BetterLeveling.Utilities
 {
     public class WinApi
     {
