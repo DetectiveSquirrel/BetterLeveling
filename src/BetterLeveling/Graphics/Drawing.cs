@@ -13,26 +13,12 @@ namespace BetterLeveling.Graphics
 {
     public class Drawing
     {
-        public static DrawingColors PassColors { get; } = new DrawingColors
-        {
-            Connector = new Color(0, 255, 38, 255),
-            Fill = new Color(0, 255, 38, 35),
-            Frame = new Color(0, 255, 38, 255)
-        };
-
-        public static DrawingColors FailColors { get; } = new DrawingColors
-        {
-            Connector = new Color(255, 8, 0, 255),
-            Fill = new Color(255, 8, 0, 35),
-            Frame = new Color(255, 8, 0, 255)
-        };
-
         public static void DrawLineToItem(Item from, Item to, bool isUpgrade)
         {
             RectangleF recTo = to.Original.GetClientRect();
             recTo.Right -= 1;
             recTo.Bottom -= 1;
-            API.Graphics.DrawLine(new Vector2(from.Original.GetClientRect().Center.X, from.Original.GetClientRect().Top), new Vector2(recTo.Center.X, recTo.Bottom), Main.Core.Settings.LineThickness, isUpgrade ? PassColors.Connector : FailColors.Connector);
+            API.Graphics.DrawLine(new Vector2(from.Original.GetClientRect().Center.X, from.Original.GetClientRect().Top), new Vector2(recTo.Center.X, recTo.Bottom), Main.Core.Settings.LineThickness, Main.Core.Settings.ConnectorColor);
         }
 
         public static void DrawAllValidItems(List<Item> inventoryList, List<Item> characterList)
@@ -99,13 +85,16 @@ namespace BetterLeveling.Graphics
             RectangleF rec = inventoryItem.Original.GetClientRect();
             rec.Right -= 1;
             rec.Bottom -= 1;
-            API.Graphics.DrawBox(rec, isUpgrade ? PassColors.Fill : FailColors.Fill);
-            API.Graphics.DrawFrame(rec, Main.Core.Settings.OutlineThickness, isUpgrade ? PassColors.Frame : FailColors.Frame);
+            API.Graphics.DrawBox(rec, Main.Core.Settings.FillColor);
+            API.Graphics.DrawFrame(rec, Main.Core.Settings.OutlineThickness, Main.Core.Settings.FrameColor);
 
             // Draw sum on the item for quickly seeing what has a high value
-            API.Graphics.DrawText(
+            if (Main.Core.Settings.SumShow)
+            {
+                API.Graphics.DrawText(
                 $"{AffixSum.GetSums(inventoryItem)}"
-                , Main.Core.Settings.SumSize, rec.Center, Color.White, FontDrawFlags.VerticalCenter | FontDrawFlags.Center);
+                , Main.Core.Settings.SumSize, rec.Center, Main.Core.Settings.SumColor, FontDrawFlags.VerticalCenter | FontDrawFlags.Center);
+            }
         }
 
         public static void DrawBoxOnItem(Item inventoryItem, float sum, bool isUpgrade, bool isDrawn = false)
@@ -114,13 +103,16 @@ namespace BetterLeveling.Graphics
             RectangleF rec = inventoryItem.Original.GetClientRect();
             rec.Right -= 1;
             rec.Bottom -= 1;
-            API.Graphics.DrawBox(rec, isUpgrade ? PassColors.Fill : FailColors.Fill);
-            API.Graphics.DrawFrame(rec, Main.Core.Settings.OutlineThickness, isUpgrade ? PassColors.Frame : FailColors.Frame);
+            API.Graphics.DrawBox(rec, Main.Core.Settings.FillColor);
+            API.Graphics.DrawFrame(rec, Main.Core.Settings.OutlineThickness, Main.Core.Settings.FrameColor);
 
             // Draw sum on the item for quickly seeing what has a high value
-            API.Graphics.DrawText(
+            if (Main.Core.Settings.SumShow)
+            {
+                API.Graphics.DrawText(
                 $"{sum}"
-                , Main.Core.Settings.SumSize, rec.Center, Color.White, FontDrawFlags.VerticalCenter | FontDrawFlags.Center);
+                , Main.Core.Settings.SumSize, rec.Center, Main.Core.Settings.SumColor, FontDrawFlags.VerticalCenter | FontDrawFlags.Center);
+            }
         }
     }
 }

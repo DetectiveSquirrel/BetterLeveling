@@ -1,6 +1,7 @@
 ﻿using System.Windows.Forms;
 using PoeHUD.Hud.Settings;
 using PoeHUD.Plugins;
+using SharpDX;
 
 namespace BetterLeveling.Core
 {
@@ -36,6 +37,18 @@ namespace BetterLeveling.Core
         public RangeNode<int> OutlineThickness { get; set; } = new RangeNode<int>(1, 1, 20);
         [Menu("Sum Size", 33, 30)]
         public RangeNode<int> SumSize { get; set; } = new RangeNode<int>(15, 1, 50);
+        [Menu("Sum Color", 35, 30)]
+        public ToggleNode SumShow { get; set; } = true;
 
+        [Menu("Colors", 36, 30)]
+        public EmptyNode EmptyColor { get; set; }
+        [Menu("Sum Color", 360, 36)]
+        public ColorNode SumColor { get; set; } = Color.White;
+        [Menu("Connector", 361, 36)]
+        public ColorNode ConnectorColor { get; set; } = new Color(0, 255, 38, 255);
+        [Menu("Fill", 362, 36)]
+        public ColorNode FillColor { get; set; } = new Color(0, 255, 38, 35);
+        [Menu("Frame", 363, 36)]
+        public ColorNode FrameColor { get; set; } = new Color(0, 255, 38, 255);
     }
 }
