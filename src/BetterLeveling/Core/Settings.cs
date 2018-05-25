@@ -10,8 +10,8 @@ namespace BetterLeveling.Core
         [Menu("Hotkeys", 20)]
         public EmptyNode EmptyHotkey { get; set; }
         [Menu("Toggle Show", 21, 20)]
-        public HotkeyNode ShowHotkey { get; set; } = Keys.Alt;
-        [Menu("Show", 22, 20)]
+        public HotkeyNode ShowHotkey { get; set; } = Keys.LMenu;
+        //[Menu("Show", 22, 20)]
         public ToggleNode ShowToggle { get; set; } = true;
 
         [Menu("Weighting", 10)]
