@@ -26,7 +26,7 @@ namespace BetterLeveling.Graphics
             foreach (Item inventoryItem in inventoryList)
             {
                 bool foundUpgrade = false;
-                if (inventoryItem.BaseItemType != ItemTypeParent.None && inventoryItem?.Rarity != ItemRarity.Normal)
+                if (inventoryItem.BaseItemType != ItemTypeParent.None && inventoryItem.Rarity != ItemRarity.Normal && inventoryItem.IsIdentified)
                 {
                     float invSum = AffixSum.GetSums(inventoryItem);
 

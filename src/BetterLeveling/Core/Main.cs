@@ -10,6 +10,9 @@ namespace BetterLeveling.Core
 {
     public class Main : BaseSettingsPlugin<Settings>
     {
+        // TODO: add options per item slot
+        // TODO: make function "public float WeightCalc(float weight, float value)" and return 0 if weight = 0;
+
         public List<Item> CharacterItems = new List<Item>();
         public List<Item> VisabableNonEquippedItems = new List<Item>();
 
